@@ -52,8 +52,6 @@ export const validationSchema = [
     [PaymentFields.nameOnCard]: yup
       .string()
       .required("Name on card is required"),
-    /* [PaymentFields.cardNumber]: yup.string().required(),
-    [PaymentFields.expirationDate]: yup.string().required(),
-    [PaymentFields.cvv]: yup.string().required(), */
+    // rest will be handled by separate Stripe validation in CheckoutPage state
   }),
 ];
