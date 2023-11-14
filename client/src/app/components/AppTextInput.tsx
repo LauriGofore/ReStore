@@ -9,6 +9,9 @@ import {
 
 interface Props<T extends FieldValues> extends UseControllerProps<T> {
   label: string;
+  multiline?: boolean;
+  rows?: number;
+  type?: "text" | "number";
 }
 
 export default function AppTextInput<T extends FieldValues>(props: Props<T>) {
@@ -19,6 +22,9 @@ export default function AppTextInput<T extends FieldValues>(props: Props<T>) {
     <TextField
       {...props}
       {...field}
+      multiline={props.multiline}
+      rows={props.rows}
+      type={props.type}
       fullWidth
       variant="outlined"
       error={!!fieldState.error}

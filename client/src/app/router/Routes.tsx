@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomePage from "../../features/home/HomePage";
 import App from "../layout/App";
 import Catalog from "../../features/catalog/Catalog";
 import ProductDetails from "../../features/catalog/ProductDetails";
@@ -13,12 +12,14 @@ import Register from "../../features/account/Register";
 import RequireAuth from "./RequireAuth";
 import Orders from "../../features/orders/Orders";
 import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
+import Inventory from "../../features/admin/Inventory";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      // authenticated routes
       {
         element: <RequireAuth />,
         children: [
@@ -32,9 +33,15 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      // admin routes
       {
-        path: "",
-        element: <HomePage />,
+        element: <RequireAuth roles={["Admin"]} />,
+        children: [
+          {
+            path: "inventory",
+            element: <Inventory />,
+          },
+        ],
       },
       {
         path: "catalog",
